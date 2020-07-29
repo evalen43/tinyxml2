@@ -1,0 +1,52 @@
+<Frame2D>
+<title>
+TEST 	EXAMPLE From Book
+</title>
+<constants>
+UnitL m Structure 2DFrame UnitF kN Code AISC
+</constants>
+<nodes unitL='cm'>	
+node1	 
+node2	 0.0 	600.0
+node3	 1000. 850.0
+node4	 2000. 600.0
+node5	 2000. 0.
+6	 	3000. 	850.
+7	 	4000. 	600.
+8	 	4000. 	0.
+</nodes>
+<section unitL='inch' uweight='kgf/m'>	
+400 Tube 30.0  0.75 
+200 Tube 30.0  0.5
+</section>
+<material unitS='ksi' den='kgfperm3'>
+Mat1 General 30460. 0.0  7850.
+</material>	
+<elements>	
+elem1 	node1 	node2 	400 Mat1
+2 	node5 	node4 	200 Mat1 
+3 	8 	7 	400 Mat1 
+4 	node2 	node3 	200 Mat1 
+5 	node3 	node4 	200 Mat1
+6 	node4 	6 	200 Mat1
+7 	6 	7 	200 Mat1
+</elements>
+<boundary>	
+	node1 ENCASTRE 
+	node5 ENCASTRE
+	8 ENCASTRE
+</boundary>
+
+<loading case="Loading 1" > 
+	<loadednodes unitL='m' unitF='N'>
+	node2 	30000.  0.0  0.0
+	node3 	0. -40000.  0.0
+	6 	0. -40000.  0.0
+	</loadednodes>
+</loading>
+<loading case="DL">
+	<loadedmembers>
+	deadload
+	</loadedmembers>
+</loading>	
+</Frame2D>	
