@@ -10,6 +10,8 @@
 #include <cstring>
 #include <ctime>
 #include <iostream>
+#include <sstream>
+#include <vector>
 
 #if defined( _MSC_VER ) || defined (WIN32)
 	#include <crtdbg.h>
@@ -359,16 +361,59 @@ int main( int argc, const char ** argv )
 
 	XMLElement* titleElement = root->FirstChildElement("title");
 	const char* title = titleElement->GetText();
-	printf("Name of play (1): %s\n", title);
+	//printf("Name of Title (1): %s\n", title);
 	XMLText* textTitle = titleElement->FirstChild()->ToText();
 	title = textTitle->Value();
-	printf("Name of play (2): %s\n", title);
+	printf("Project Title : %s\n", title);
 
 	XMLElement* nodeElements = root->FirstChildElement("nodes");
 	const char* nodeinput = nodeElements->GetText();
 	XMLText* textNode = nodeElements->FirstChild()->ToText();
 	nodeinput = textNode->Value();
-	printf("Name of play (2): %s\n", nodeinput);
+	printf("Node Coordinates: %s\n", nodeinput);
+
+	XMLElement* elemElements = root->FirstChildElement("elements");
+	const char* eleminput = elemElements->GetText();
+	XMLText* textelem = elemElements->FirstChild()->ToText();
+	eleminput = textelem->Value();
+	printf("Element Properties: %s\n", eleminput);
+
+	XMLElement* secElements = root->FirstChildElement("section");
+	const char* secinput = secElements->GetText();
+	XMLText* textsec = secElements->FirstChild()->ToText();
+	eleminput = textsec->Value();
+	printf("Section Properties: %s\n", secinput);
+
+	XMLElement* matElements = root->FirstChildElement("material");
+	const char* matinput = matElements->GetText();
+	XMLText* textmat = matElements->FirstChild()->ToText();
+	matinput = textmat->Value();
+	printf("Material Properties: %s\n", matinput);
+
+	XMLElement* boundElements = root->FirstChildElement("boundary");
+	const char* boundinput = boundElements->GetText();
+	XMLText* textbound = boundElements->FirstChild()->ToText();
+	boundinput = textbound->Value();
+
+	printf("Boundary Properties: %s\n", boundinput);
+	std::string binput(boundinput);//convert to string
+	//std::cout << binput << std::endl;
+	std::stringstream check1(binput);
+	std::string intermediate;
+	std::vector<std::string> tokens;
+	std::vector<std::string> melem;
+	while (getline(check1, intermediate, '\n')) 
+		tokens.push_back(intermediate);
+	for (int i = 0; i < tokens.size(); i++) 
+	{ 
+		std::stringstream  check1(tokens[i]);
+		while (getline(check1, intermediate, ' ')) 
+			melem.push_back(intermediate);
+		
+		for(int j=0;j<melem.size();j++)
+			std::cout << melem[j] << std::endl; 
+		melem.clear();
+	}
 	//double val;
 	//nodes->QueryDoubleText(&val);
 	return doc.ErrorID();
