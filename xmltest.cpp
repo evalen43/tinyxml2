@@ -29,7 +29,24 @@ using namespace std;
 int gPass = 0;
 int gFail = 0;
 
+std::vector<std::string> parse_stream_byline(std::string lines)
+{
+	std::stringstream check1(lines);
+	std::string intermediate;
+	std::vector<std::string> tokens;
 
+	while (getline(check1, intermediate, '\n'))
+		tokens.push_back(intermediate);
+	return tokens;
+}
+
+std::vector<std::string> parse_stream_byelement(std::string line)
+{
+	std::istringstream  iss(line);
+	std::vector<std::string> results((std::istream_iterator<std::string>(iss)),
+		std::istream_iterator<std::string>());
+	return results;
+}
 bool XMLTest (const char* testString, const char* expected, const char* found, bool echo=true, bool extraNL=false )
 {
 	bool pass;
@@ -397,22 +414,15 @@ int main( int argc, const char ** argv )
 
 	printf("Boundary Properties: %s\n", boundinput);
 	std::string binput(boundinput);//convert to string
-	//std::cout << binput << std::endl;
-	std::stringstream check1(binput);
-	std::string intermediate;
-	std::vector<std::string> tokens;
-	std::vector<std::string> melem;
-	while (getline(check1, intermediate, '\n')) 
-		tokens.push_back(intermediate);
+
+	std::vector<std::string> tokens = parse_stream_byline(boundinput);
 	for (int i = 0; i < tokens.size(); i++) 
 	{ 
-		std::stringstream  check1(tokens[i]);
-		while (getline(check1, intermediate, ' ')) 
-			melem.push_back(intermediate);
+		std::vector<std::string> results = parse_stream_byelement(tokens[i]);
 		
-		for(int j=0;j<melem.size();j++)
-			std::cout << melem[j] << std::endl; 
-		melem.clear();
+		for(int j=0;j<results.size();j++)
+			std::cout << results[j] << std::endl; 
+		//melem.clear();
 	}
 	//double val;
 	//nodes->QueryDoubleText(&val);
