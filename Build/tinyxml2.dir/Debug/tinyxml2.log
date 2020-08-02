@@ -1,0 +1,4 @@
+﻿  Building Custom Rule C:/GitHub/CMakeLists.txt
+  tinyxml2.cpp
+     Creating library C:/GitHub/Build/Debug/tinyxml2d.lib and object C:/GitHub/Build/Debug/tinyxml2d.exp
+  tinyxml2.vcxproj -> C:\GitHub\Build\Debug\tinyxml2d.dll

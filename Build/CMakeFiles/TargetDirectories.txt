@@ -1,0 +1,11 @@
+C:/GitHub/Build/CMakeFiles/NightlyMemoryCheck.dir
+C:/GitHub/Build/CMakeFiles/Experimental.dir
+C:/GitHub/Build/CMakeFiles/Continuous.dir
+C:/GitHub/Build/CMakeFiles/Nightly.dir
+C:/GitHub/Build/CMakeFiles/xmltest.dir
+C:/GitHub/Build/CMakeFiles/tinyxml2.dir
+C:/GitHub/Build/CMakeFiles/uninstall.dir
+C:/GitHub/Build/CMakeFiles/RUN_TESTS.dir
+C:/GitHub/Build/CMakeFiles/INSTALL.dir
+C:/GitHub/Build/CMakeFiles/ALL_BUILD.dir
+C:/GitHub/Build/CMakeFiles/ZERO_CHECK.dir
